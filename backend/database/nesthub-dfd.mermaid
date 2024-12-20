@@ -1,0 +1,66 @@
+graph TD
+    User[User]
+    Admin[Admin]
+    Teacher[Teacher]
+    Student[Student]
+    HOD[HOD]
+
+    UserManagement[User Management]
+    DepartmentManagement[Department Management]
+    BatchManagement[Batch Management]
+    SectionManagement[Section Management]
+    SubjectManagement[Subject Management]
+    ScheduleManagement[Schedule Management]
+    AttendanceManagement[Attendance Management]
+    ForumManagement[Forum Management]
+
+    UserData[(User Data)]
+    DepartmentData[(Department Data)]
+    BatchData[(Batch Data)]
+    SectionData[(Section Data)]
+    SubjectData[(Subject Data)]
+    ScheduleData[(Schedule Data)]
+    AttendanceData[(Attendance Data)]
+    ForumData[(Forum Data)]
+
+    User --> UserManagement
+    Admin --> UserManagement
+    Teacher --> UserManagement
+    Student --> UserManagement
+    HOD --> UserManagement
+
+    Admin --> DepartmentManagement
+    HOD --> DepartmentManagement
+
+    Admin --> BatchManagement
+    HOD --> BatchManagement
+
+    Admin --> SectionManagement
+    HOD --> SectionManagement
+
+    Admin --> SubjectManagement
+    HOD --> SubjectManagement
+
+    Teacher --> ScheduleManagement
+    HOD --> ScheduleManagement
+
+    Teacher --> AttendanceManagement
+    Student --> AttendanceManagement
+
+    User --> ForumManagement
+
+    UserManagement <--> UserData
+    DepartmentManagement <--> DepartmentData
+    BatchManagement <--> BatchData
+    SectionManagement <--> SectionData
+    SubjectManagement <--> SubjectData
+    ScheduleManagement <--> ScheduleData
+    AttendanceManagement <--> AttendanceData
+    ForumManagement <--> ForumData
+
+    DepartmentData --> BatchManagement
+    BatchData --> SectionManagement
+    DepartmentData --> SubjectManagement
+    SectionData --> ScheduleManagement
+    SubjectData --> ScheduleManagement
+    ScheduleData --> AttendanceManagement
