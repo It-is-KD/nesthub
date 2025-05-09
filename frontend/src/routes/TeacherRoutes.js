@@ -9,6 +9,7 @@ import {
     TeacherSchedule,
     TeacherSettings,
   } from '../Pages/teacher';
+import TeacherNotice from '../Pages/teacher/TeacherNotice';
 
 const TeacherRoutes = ({ drawerOpen, toggleDrawer }) => (
   <Routes>
@@ -17,6 +18,7 @@ const TeacherRoutes = ({ drawerOpen, toggleDrawer }) => (
     <Route path="schedule" element={<TeacherSchedule drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="reports" element={<TeacherReports drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="forum" element={<TeacherForum drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
+    <Route path="noticeboard" element={<TeacherNotice drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="profile" element={<TeacherProfile drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="settings" element={<TeacherSettings drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
   </Routes>

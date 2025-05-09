@@ -12,6 +12,7 @@ export const mainItems = [
 
 export const reportItems = [
   { icon: <ForumIcon />, text: "Forum", link: "/student/forum" },
+  { icon: <ForumIcon />, text: "Notice Board", link: "/student/noticeboard" },
   { icon: <PersonIcon />, text: "Profile", link: "/student/profile" },
   { icon: <SettingsIcon />, text: "Settings", link: "/student/settings" },
 ];

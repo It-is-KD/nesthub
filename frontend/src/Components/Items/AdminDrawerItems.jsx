@@ -17,6 +17,7 @@ export const mainItems = [
 ];
 
 export const reportItems = [
+  { icon: <HowToRegIcon />, text: "Notice Board", link: "/admin/noticeboard" },
   { icon: <HowToRegIcon />, text: "Register", link: "/admin/register" },
   { icon: <AccountCircleIcon />, text: "Profile", link: "/admin/profile" },
   { icon: <SettingsIcon />, text: "Settings", link: "/admin/settings" },

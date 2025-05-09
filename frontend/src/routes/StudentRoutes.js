@@ -7,12 +7,14 @@ import {
     StudentReports,
     StudentSettings
   } from '../Pages/student';
+import StudentNotice from '../Pages/student/StudentNotice';
 
 const StudentRoutes = ({ drawerOpen, toggleDrawer }) => (
   <Routes>
     <Route path="dashboard" element={<StudentDashboard drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="reports" element={<StudentReports drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="forum" element={<StudentForum drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
+    <Route path="noticeboard" element={<StudentNotice drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="profile" element={<StudentProfile drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="settings" element={<StudentSettings drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
   </Routes>

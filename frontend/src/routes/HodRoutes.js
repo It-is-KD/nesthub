@@ -12,6 +12,7 @@ import {
     HodTeachers,
     HodSubjects,
   } from '../Pages/hod';
+import HodNoticeBoard from '../Pages/hod/HodNoticeBoard';
 
 const HodRoutes = ({ drawerOpen, toggleDrawer }) => (
   <Routes>
@@ -23,6 +24,7 @@ const HodRoutes = ({ drawerOpen, toggleDrawer }) => (
     <Route path="attendance" element={<HodAttendance drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="reports" element={<HodReports drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="forum" element={<HodForum drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
+    <Route path="noticeboard" element={<HodNoticeBoard drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="profile" element={<HodProfile drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="settings" element={<HodSettings drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
   </Routes>

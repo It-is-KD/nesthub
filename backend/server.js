@@ -1450,6 +1450,54 @@ app.get('/api/messages/:senderId/:receiverId', authenticateToken, (req, res) => 
   });
 });
 
+app.get('/api/notices', authenticateToken, (req, res) => {
+  const userId = req.user.userId;
+  const userRole = req.user.role;
+  
+  let sql = `
+    SELECT n.*, u.name as sender_name, d.department_name 
+    FROM notices n
+    JOIN usermaster u ON n.sender_id = u.user_id
+    LEFT JOIN department d ON n.department_id = d.department_id
+    WHERE 1=1
+  `;
+
+  if (userRole === 'Student' || userRole === 'Teacher') {
+    sql += ` AND (
+      target_role = 'All' OR 
+      target_role = ? OR 
+      (n.department_id = (
+        SELECT 
+          CASE 
+            WHEN ? = 'Student' THEN b.department_id 
+            WHEN ? = 'Teacher' THEN t.department_id 
+          END
+        FROM usermaster u
+        LEFT JOIN studentmaster s ON u.user_id = s.student_id
+        LEFT JOIN section sec ON s.section_id = sec.section_id
+        LEFT JOIN batch b ON sec.batch_id = b.batch_id
+        LEFT JOIN teachermaster t ON u.user_id = t.teacher_id
+        WHERE u.user_id = ?
+      ))
+    )`;
+  }
+
+  sql += ` ORDER BY created_at DESC`;
+
+  const params = userRole === 'Admin' ? [] : [userRole, userRole, userRole, userId];
+
+  db.query(sql, params, (err, result) => {
+    if (err) {
+      console.error('Error fetching notices:', err);
+      return res.status(500).json({ success: false, message: 'Error fetching notices' });
+    }
+    res.json(result.map(notice => ({
+      ...notice,
+      file_content: notice.file_content ? notice.file_content.toString('base64') : null
+    })));
+  });
+});
+
 //...................................................................................................POST
 
 app.post('/api/register', async (req, res) => {
@@ -2353,6 +2401,34 @@ app.post('/api/mark-messages-read', authenticateToken, (req, res) => {
       return res.status(500).json({ success: false, message: 'Error marking messages as read' });
     }
     res.json({ success: true, message: 'Messages marked as read' });
+  });
+});
+
+app.post('/api/notices', authenticateToken, upload.single('file'), (req, res) => {
+  const { sender_id, title, content, target_role, department_id } = req.body;
+  let fileContent = null;
+  let fileName = null;
+  let contentType = null;
+
+  if (req.file) {
+    fileContent = fs.readFileSync(req.file.path);
+    fileName = req.file.originalname;
+    contentType = req.file.mimetype;
+  }
+
+  const sql = `INSERT INTO notices 
+    (sender_id, title, content, file_content, file_name, content_type, target_role, department_id) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+
+  db.query(sql, [sender_id, title, content, fileContent, fileName, contentType, target_role, department_id], (err, result) => {
+    if (req.file) {
+      fs.unlinkSync(req.file.path);
+    }
+    if (err) {
+      console.error('Error creating notice:', err);
+      return res.status(500).json({ success: false, message: 'Error creating notice' });
+    }
+    res.json({ success: true, message: 'Notice created successfully' });
   });
 });
 

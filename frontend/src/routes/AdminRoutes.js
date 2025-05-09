@@ -10,6 +10,7 @@ import {
     AdminProfile,
     AdminSettings
   } from '../Pages/admin';
+  import AdminNoticeBoard from '../Pages/admin/AdminNoticeBoard';
 
 const AdminRoutes = ({ drawerOpen, toggleDrawer }) => (
   <Routes>
@@ -18,6 +19,7 @@ const AdminRoutes = ({ drawerOpen, toggleDrawer }) => (
     <Route path="students" element={<AdminStudents drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="departments" element={<AdminDepartments drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="hod" element={<AdminHod drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
+    <Route path="noticeboard" element={<AdminNoticeBoard drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="register" element={<AdminRegister drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="profile" element={<AdminProfile drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />
     <Route path="settings" element={<AdminSettings drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />} />

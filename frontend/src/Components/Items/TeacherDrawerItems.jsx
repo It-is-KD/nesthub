@@ -16,6 +16,7 @@ export const mainItems = [
 
 export const reportItems = [
   { icon: <ForumIcon />, text: "Forum", link: "/teacher/forum" },
+  { icon: <ForumIcon />, text: "Notice Board", link: "/teacher/noticeboard" },
   { icon: <AccountCircleIcon />, text: "Profile", link: "/teacher/profile" },
   { icon: <SettingsIcon />, text: "Settings", link: "/teacher/settings" },
 ];

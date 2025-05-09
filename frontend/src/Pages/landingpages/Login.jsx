@@ -100,7 +100,7 @@ function Login() {
             sm={4}
             md={7}
             sx={{
-              backgroundImage: 'url("../imgs/nsec-signin-img.jpg")',
+              backgroundImage: 'url("../imgs/nesthub_bg.png")',
               backgroundRepeat: 'no-repeat',
               backgroundColor: (t) =>
                 t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -118,7 +118,7 @@ function Login() {
                 alignItems: 'center',
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: 'white', width: 100, height: 100 }} src="../imgs/nsec_logo.png" ></Avatar>
+              <Avatar sx={{ m: 1, bgcolor: 'white', width: 100, height: 100 }} src="../imgs/nesthub_logo.png" ></Avatar>
               <Typography component="h1" variant="h5">
                 Log in
               </Typography>
